@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'items/:id', to: 'items#show', as: :item
   get 'items/:id/edit', to: 'items#edit', as: :edit_item
   patch 'items/:id', to: 'items#update'
+  delete 'items/:id', to: 'items#destroy'
 
   root to: 'pages#home'
 end
