@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'notes/new', to: 'notes#new', as: :new_note
   get 'notes/:id', to: 'notes#show', as: :note
   patch 'notes/:id', to: 'notes#update'
+  delete 'notes/:id', to: 'notes#destroy'
   get 'notes/:id/edit', to: 'notes#edit', as: :edit_note
 
   get 'items', to: 'items#index'
