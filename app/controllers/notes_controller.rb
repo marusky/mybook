@@ -1,10 +1,11 @@
 class NotesController < ApplicationController
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
+
   def index
     @notes = Note.all
   end
 
   def show
-    @note = Note.find(params[:id])
   end
   
   def new
@@ -12,28 +13,39 @@ class NotesController < ApplicationController
   end
   
   def create
-    @note = Note.create(title: params[:note][:title], body: params[:note][:body])
+    @note = Note.new(note_params)
 
-    redirect_to @note
+    if @note.save
+      redirect_to @note
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
-    @note = Note.find(params[:id])
   end
 
   def update
-    @note = Note.find(params[:id])
-    
-    @note.update(title: params[:note][:title], body: params[:note][:body])
-
-    redirect_to @note
+    if @note.update(note_params)
+      redirect_to @note
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @note = Note.find(params[:id])
-
     @note.delete
 
     redirect_to notes_path
+  end
+
+  private
+
+  def set_note
+    @note = Note.find(params[:id])
+  end
+
+  def note_params
+    params.require(:note).permit(:title, :body)
   end
 end

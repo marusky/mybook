@@ -1,7 +1,4 @@
 class Item < ApplicationRecord
-  def sanitize_for_mass_assignment(attributes)
-    attributes
-  end
-
-  alias :sanitize_forbidden_attributes :sanitize_for_mass_assignment
+  validates :title, length: { minimum: 3 }
+  validates :expected_cost, comparison: { less_than: 50 }
 end

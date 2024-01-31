@@ -13,18 +13,24 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
 
-    redirect_to @item
+    if @item.save
+      redirect_to @item
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def update
-    @item.update(item_params)
-
-    redirect_to @item
+    if @item.update(item_params)
+      redirect_to @item
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -36,7 +42,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :expected_cost, :is_done)
+    params.require(:item).permit(:title, :expected_cost, :is_done, :complies_with_GDPR)
   end
 
   def set_item
