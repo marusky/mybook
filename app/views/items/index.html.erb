@@ -1,8 +1,30 @@
-<h1>Items</h1>
+<header>
+  <%= link_to root_path, class: 'text-gray-400' do %>
+    &larr; Home
+  <% end %>
+  <div class='flex justify-between items-center'>
+    <h1 class='text-2xl font-bold'>Items</h1>
+    <%= link_to 'New Item', new_item_path, class: 'inline-block px-3 py-1.5 bg-indigo-600 rounded-md text-white' %>
+  </div>
+</header>
 
-<%= link_to 'New Item', new_item_path %>
+<section class='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 mt-6 gap-x-6 gap-y-8'>
+  <% @items.each do |item| %>
+    <% if item.is_done? %>
+      <%= button_to item, method: :delete, class: 'w-full text-left p-4 shadow-lg bg-emerald-50 rounded-md' do %>
+        <h1 class='text-xl'><%= item.title %></h1>
+        <%= number_to_currency item.expected_cost, unit: '€', format: "%n %u" %>
+      <% end %>
+    <% else %>
+      <%= button_to item, method: :patch, params: { item: { is_done: true } }, class: 'w-full text-left p-4 shadow-lg bg-stone-50 rounded-md' do %>
+        <h1 class='text-xl'><%= item.title %></h1>
+        <%= number_to_currency item.expected_cost, unit: '€', format: "%n %u" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
 
-<table>
+<!--<table>
   <thead>
     <tr>
       <th>ID</th>
@@ -24,4 +46,4 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table>-->

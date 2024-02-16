@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'about', to: 'pages#about'
   get 'notes', to: 'notes#index'
   post 'notes', to: 'notes#create'
   get 'notes/new', to: 'notes#new', as: :new_note
@@ -11,9 +10,8 @@ Rails.application.routes.draw do
   get 'items', to: 'items#index'
   post 'items', to: 'items#create'
   get 'items/new', to: 'items#new', as: :new_item
-  get 'items/:id', to: 'items#show', as: :item
   get 'items/:id/edit', to: 'items#edit', as: :edit_item
-  patch 'items/:id', to: 'items#update'
+  patch 'items/:id', to: 'items#update', as: :item
   delete 'items/:id', to: 'items#destroy'
 
   root to: 'pages#home'

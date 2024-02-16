@@ -1,18 +1,14 @@
-<!-- 
-<ul>
-  <% @notes.each do |note| %>
-    <li><%= note.title %></li>
+<header>
+  <%= link_to root_path, class: 'text-gray-400' do %>
+    &larr; Home
   <% end %>
-</ul> 
--->
-
-<header class='flex justify-between'>
-  <h1 class='text-2xl font-bold'>Notes</h1>
-  <%= link_to 'New Note', new_note_path, class: 'inline-block px-3 py-1.5 bg-indigo-600 rounded-md text-white' %>
+  <div class='flex justify-between items-center'>
+    <h1 class='text-2xl font-bold'>Notes</h1>
+    <%= link_to 'New Note', new_note_path, class: 'inline-block px-3 py-1.5 bg-indigo-600 rounded-md text-white' %>
+  </div>
 </header>
 
-
-<table class='table-auto w-full mt-6'>
+<table class='table-auto w-full my-6'>
   <thead class='text-left'>
     <tr>
       <th class='py-4 pl-3'>ID</th>
@@ -24,10 +20,10 @@
   <tbody>
     <% @notes.each do |note| %>
       <tr class='border-t border-gray-200'>
-        <td class='py-3 pl-3'><%= note.id %></td>
-        <td><%= link_to note.title, note %></td>
-        <td><%= note.body %></td>
-        <td><%= link_to 'Edit', edit_note_path(note), class: 'px-3 py-1.5 border border-gray-200 rounded-md' %></td>
+        <td class='py-3 px-3'><%= note.id %></td>
+        <td class='px-3'><%= link_to note.title, note %></td>
+        <td class='px-3'><%= note.body %></td>
+        <td class='px-3'><%= link_to 'Edit', edit_note_path(note), class: 'px-3 py-1.5 border border-gray-200 rounded-md' %></td>
         <td><%= button_to 'Delete', note, method: :delete, class: 'px-3 py-1.5 bg-rose-100 text-rose-400 rounded-md' %></td>
       </tr>
     <% end %>
