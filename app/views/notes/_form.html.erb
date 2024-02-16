@@ -1,18 +1,21 @@
-<%= form_with model: @note do |f| %>
+<%= form_with model: @note, class: 'grid grid-cols-6 max-w-3xl gap-y-8' do |f| %>
   <% if @note.errors.any? %>
-    <ul>
+    <ul class='bg-rose-100 border border-rose-400 rounded-md p-3 col-span-4 list-disc list-inside'>
       <% @note.errors.each do |error| %>
         <li><%= error.full_message %></li>
       <% end %>
     </ul>
   <% end %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <div class='col-span-4'>
+    <%= f.label :title, class: 'text-sm' %>
+    <%= f.text_field :title, class: 'w-full mt-2 block border-0 ring-1 ring-gray-200 rounded-md' %>
   </div>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
+  <div class='col-span-full'>
+    <%= f.label :body, class: 'text-sm' %>
+    <%= f.text_area :body, class: 'w-full mt-2 block border-0 ring-1 ring-gray-200 rounded-md' %>
   </div>
-  <%= f.submit submit_text %>
+  <div class='col-span-full'>
+    <%= f.submit submit_text, class: 'px-3 py-1.5 bg-indigo-600 text-white rounded-md' %>
+    <%= link_to 'Cancel', cancel_path, class: 'ml-4' %>
+  </div>
 <% end %>

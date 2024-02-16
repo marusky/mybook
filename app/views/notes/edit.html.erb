@@ -1,3 +1,5 @@
-<%= render 'form', submit_text: 'Woohoo, update!' %>
+<h1 class='text-2xl font-bold'>Editing note</h1>
 
-<%= link_to 'Back to note', @note %>
+<div class='mt-6'>
+  <%= render 'form', submit_text: 'Woohoo, update!', cancel_path: @note %>
+</div>
